@@ -7,7 +7,7 @@ output:
     toc_float: true
 ---
 
-## 7.4 Assignment
+## Assignment
 (20 pnts)
 
 In this lab/homework, you will use the transfer function model from the previous module for some sensitivity analysis using Monte Carlo simulations. The code is mostly the same as last module with some small adjustments to save the parameters from each Monte Carlo run. 
@@ -21,7 +21,7 @@ In this Monte Carlo simulation, we're testing how different parameter values aff
 
 A lot of the code in this homework will be provided.
 
-### 7.4.1 Setup
+### Setup
 Import packages, including the "progress" and "tictoc" packages. These will allow us to time our loops and functions
 
 ```{r setup, include=FALSE}
@@ -55,7 +55,7 @@ Pobs <- PQ$RainMelt_mm # observed precipitation
 Qobs <- PQ$Discharge_mm # observed streamflow
 ```
 
-### 7.4.2 Parameter initialization
+### Parameter initialization
 This chunk has two purposes. The first is to set up the number of iterations for the Monte Carlo simulation. The entire model code is essentially wrapped into the main MC for-loop. Each iteration of that loop is one full model realization: loss function, transfer function, convolution, model fit assessment (objective function). For each model run (each MC iteration), we will save the model parameters and respective objective functions in a dataframe. This will be the main source for the GLUE sensitivity analysis at the end. The model parameters are sampled in the main model chunk, this is just the preallocation of the dataframe.  
 You will both run your own MC simulation, to set up the code, but will also receive a .Rdata file with 100,000 runs to give you more behavioral runs for the sensitivity analysis and uncertainty bounds. As a tip, while setting up the code, I would recommend setting the number of MC iterations to something low, for example 10 or maybe even 1. Once you have confirmed that your code works, crank up the number of iterations. Set it to 1000 to see how many behavioral runs you get. After that, load the file with the provided runs. 
 
@@ -78,7 +78,7 @@ param <- tibble(
 )
 ```
 
-### 7.4.3 MC Model run
+### MC Model run
 
 This is the main model chunk. The tic() and toc() statements measure the execution time for the whole chunk. There is also a progress bar in the chunk that will run in the console and inform you about the progress of the MC simulation. The loss function parameters are set in the loss function, the transfer function parameters in the loss function code. For each loop iteration, we will store the parameter values and the simulated discharge in the "param" dataframe. So, if we ran the MC simulation 100 times, we would end up with 100 parameter combinations and simulated discharges.
 
@@ -216,7 +216,7 @@ ANSWER:
 
 
 
-Save or load data
+#### Save or load data
 
 After setting up the MC simulation, we will actually use a pre-created dataset. Running the MC simulation tens of thousands of times will take multiple hours. For that reason, we have done this for you and saved it as an importable data set.
 
@@ -248,7 +248,7 @@ ggplot(PQ_long, aes(x = BLANK, y = BLANK, color = key)) +
   })
 ```
 
-### 7.4.4 Sensitivity analysis
+### Sensitivity analysis
 
 We will use the GLUE methodology to assess parameter sensitivity. We will use GLUE for two purposes: 
 1) Assessing parameter sensitivity – Understanding how different parameter values influence model performance
