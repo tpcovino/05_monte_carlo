@@ -100,7 +100,9 @@ param <- tibble(
   nse = vector(mode = "double", nx),
   kge = vector(mode = "double", nx),
   rmse = vector(mode = "double", nx),
-  mae = vector(mode = "double", nx)
+  mae = vector(mode = "double", nx),
+  qsim = vector(mode = 'double', nx)
+  
 )
 ```
 
